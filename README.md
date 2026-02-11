@@ -20,5 +20,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 Task List:
     1. Center and Update UI (No Scrolling)
+
     2. Persistance (Databases/SQL)
+    
     3. Auto Reset the Daily Calorie Count (Max Daily Should Stay Same)
