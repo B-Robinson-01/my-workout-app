@@ -11,9 +11,15 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## Testing using localhost
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Simple testing on local device
+- npm run preview
+- npm run dev
+
+Host from device
+- npm run dev -- --host
+
 
 
 ## TODOs:
@@ -24,3 +30,9 @@ Task List:
     2. Persistance (Databases/SQL)
     
     3. Auto Reset the Daily Calorie Count (Max Daily Should Stay Same)
+
+
+DREAMs:
+
+- Log of Everyday - history / past performances (graphs, charts, tables, lists, etc.)
+- Add Gym workout functionality (track workouts and weights)
