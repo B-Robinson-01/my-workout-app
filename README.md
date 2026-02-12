@@ -25,7 +25,7 @@ Host from device
 ## TODOs:
 
 Task List:
-    1. Center and Update UI (No Scrolling)
+    1. Center and Update UI (No Scrolling) (DONE)
 
     2. Persistance (Databases/SQL)
     

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { db } from './db';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 // --- SUB-COMPONENTS ---
 const HomeView = ({ food, setFood, calories, setCalories, addEntry, totalCalories, dailyGoal, progress, entries }) => (
@@ -68,44 +70,50 @@ const SettingsView = ({ dailyGoal, setDailyGoal, setEntries }) => (
 // --- MAIN APP ---
 const App = () => {
   const [view, setView] = useState('home');
-  const [entries, setEntries] = useState([]);
   const [food, setFood] = useState('');
   const [calories, setCalories] = useState('');
-  const [dailyGoal, setDailyGoal] = useState(() => Number(localStorage.getItem('daily_goal')) || 2500);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('daily_calories');
-    if (saved) setEntries(JSON.parse(saved));
-  }, []);
+  // 1. Database Hooks
+  const dailyGoalData = useLiveQuery(() => db.settings.get('daily_goal'));
+  const dailyGoal = dailyGoalData?.value || 2500;
+  const today = new Date().toISOString().split('T')[0];
 
-  // Lock body scroll when app is mounted
+  const entries = useLiveQuery(
+    () => db.entries.where('date').equals(today).reverse().toArray()
+  ) || [];
+
+  // 2. Lock body scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     document.body.style.height = '100%';
-    
-    return () => {
-      document.body.style.overflow = 'auto'; // Re-enable when leaving the app
-    };
+    return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('daily_calories', JSON.stringify(entries));
-    localStorage.setItem('daily_goal', dailyGoal.toString());
-  }, [entries, dailyGoal]);
+  // 3. Database Actions
+  const updateGoal = async (newGoal) => {
+    await db.settings.put({ key: 'daily_goal', value: newGoal });
+  };
 
-  const addEntry = (e) => {
+  const addEntry = async (e) => {
     e.preventDefault();
     if (!food || !calories || calories <= 0) return;
-    const newEntry = {
-      id: Date.now(),
-      food,
-      calories: Math.abs(parseInt(calories)), 
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
 
-    setEntries([newEntry, ...entries]);
+    await db.entries.add({
+      food,
+      calories: parseInt(calories),
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      date: today
+    });
+
     setFood('');
     setCalories('');
+  };
+
+  const clearLogs = async () => {
+    if (confirm("Clear logs for today?")) {
+      // You can either clear everything or just today's entries
+      await db.entries.where('date').equals(today).delete();
+    }
   };
 
   const totalCalories = Math.max(0, entries.reduce((sum, item) => sum + item.calories, 0));
@@ -114,6 +122,7 @@ const App = () => {
   return (
     <div style={styles.body}>
       <div style={styles.container}>
+        <div style={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           {view === 'home' ? (
             <HomeView 
               food={food} setFood={setFood} 
@@ -123,7 +132,11 @@ const App = () => {
               entries={entries} 
             />
           ) : (
-            <SettingsView dailyGoal={dailyGoal} setDailyGoal={setDailyGoal} setEntries={setEntries} />
+            <SettingsView 
+              dailyGoal={dailyGoal} 
+              setDailyGoal={updateGoal} 
+              setEntries={clearLogs} 
+            />
           )}
         </div>
         
@@ -136,13 +149,14 @@ const App = () => {
           </button>
         </nav>
       </div>
+    </div>
   );
 };
 
 // --- STYLES OBJECT (Critical - App will crash without this) ---
 const styles = {
   body: { backgroundColor: '#121214', width: '100vw', color: '#fff', margin: 0, padding: 0, fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', justifyContent: 'center' },
-  container: { maxWidth: '500px', margin: 'auto', height: '100dvh', display: 'flex', flexDirection: 'column', paddingTop: "50px", paddingBottom: '70px', justifyContent: 'center', boxSizing: 'border-box', overflow: 'hidden' },
+  container: { maxWidth: '500px', margin: 'auto', height: '100dvh', display: 'flex', flexDirection: 'column', padding: '70px 20px 100px 20px', justifyContent: 'center', boxSizing: 'border-box', overflow: 'hidden' },
 };
 
 const calorieStyles = {
