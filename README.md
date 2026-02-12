@@ -1,3 +1,5 @@
+## THIS IS A BETA PROJECT - SEE TODOS for CURRENT GOALS
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -27,12 +29,13 @@ Host from device
 Task List:
     1. Center and Update UI (No Scrolling) (DONE)
 
-    2. Persistance (Databases/SQL)
+    2. Persistance (Databases/SQL) (DONE)
     
-    3. Auto Reset the Daily Calorie Count (Max Daily Should Stay Same)
+    3. Auto Reset the Daily Calorie Count (Max Daily Should Stay Same) (DONE)
 
 
 DREAMs:
 
+- Protein Options
 - Log of Everyday - history / past performances (graphs, charts, tables, lists, etc.)
 - Add Gym workout functionality (track workouts and weights)
