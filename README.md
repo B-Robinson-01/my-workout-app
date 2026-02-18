@@ -1,13 +1,9 @@
 ## THIS IS A BETA PROJECT - SEE TODOS for CURRENT GOALS
 
-# React + Vite
+# React + Vite + PWA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app explores how to get React and Vite working with some PWA updating and
+Dexie.js data persistance. 
 
 ## React Compiler
 
@@ -36,15 +32,16 @@ Source: https://b-robinson-01.github.io/my-workout-app/
 ## TODOs:
 
 Task List:
-    1. Center and Update UI (No Scrolling) (DONE)
-
-    2. Persistance (Databases/SQL) (DONE)
     
-    3. Auto Reset the Daily Calorie Count (Max Daily Should Stay Same) (DONE)
+    - Center and Update UI (No Scrolling) (DONE)
+
+    - Persistance (Databases/SQL) (DONE)
+    
+    - Auto Reset the Daily Calorie Count (Max Daily Should Stay Same) (DONE)
 
 
 DREAMs:
 
-- Protein Options
+- Protein Options (Done)
 - Log of Everyday - history / past performances (graphs, charts, tables, lists, etc.)
 - Add Gym workout functionality (track workouts and weights)
