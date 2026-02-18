@@ -37,7 +37,7 @@ const HomeView = ({ food, setFood, calories, setCalories, protein, setProtein, a
             <div style={{ 
               ...calorieStyles.linearBar, 
               width: `${Math.min(proteinProgress, 100)}%`,
-              backgroundColor: '#e8c123'
+              backgroundColor: '#23e84a'
             }} />
           </div>
         </div>
