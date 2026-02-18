@@ -11,7 +11,7 @@ const HomeView = ({ food, setFood, calories, setCalories, addEntry, totalCalorie
           <svg width="120" height="120" viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="54" fill="none" stroke="#2a2a2e" strokeWidth="10" />
             <circle 
-              cx="60" cy="60" r="54" fill="none" stroke="#00ff88" strokeWidth="10" 
+              cx="60" cy="60" r="54" fill="none" stroke="#e8c123" strokeWidth="10" 
               strokeDasharray="339.29" strokeDashoffset={339.29 - (339.29 * progress) / 100}
               strokeLinecap="round" style={{ transition: 'stroke-dashoffset 0.5s ease' }}
             />
@@ -141,10 +141,10 @@ const App = () => {
         </div>
         
         <nav style={calorieStyles.navbar}>
-          <button style={{...calorieStyles.navItem, color: view === 'home' ? '#00ff88' : '#888'}} onClick={() => setView('home')}>
+          <button style={{...calorieStyles.navItem, color: view === 'home' ? '#EFBF04' : '#888'}} onClick={() => setView('home')}>
             🏠 <span>Dashboard</span>
           </button>
-          <button style={{...calorieStyles.navItem, color: view === 'settings' ? '#00ff88' : '#888'}} onClick={() => setView('settings')}>
+          <button style={{...calorieStyles.navItem, color: view === 'settings' ? '#EFBF04' : '#888'}} onClick={() => setView('settings')}>
             ⚙️ <span>Settings</span>
           </button>
         </nav>
@@ -171,13 +171,13 @@ const calorieStyles = {
   glassForm: { display: 'flex', flexDirection: 'column', gap: '15px', marginBottom: '30px', padding: '20px' },
   neuInput: { backgroundColor: '#1a1a1d', border: 'none', borderRadius: '15px', padding: '15px', color: '#fff', fontSize: '16px', boxShadow: 'inset 4px 4px 8px #0d0d0f, inset -4px -4px 8px #27272b', width: '100%', boxSizing: 'border-box' }, // Input format style
   inputRow: { display: 'flex', gap: '10px' },
-  plusBtn: { backgroundColor: '#00ff88', color: '#000', border: 'none', borderRadius: '15px', width: '60px', fontSize: '24px', fontWeight: 'bold', display: 'flex', justifyContent: 'center'},
+  plusBtn: { backgroundColor: '#EFBF04', color: '#000', border: 'none', borderRadius: '15px', width: '60px', fontSize: '24px', fontWeight: 'bold', display: 'flex', justifyContent: 'center'},
   historyScrollArea: { flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', padding: '0 20px 20px 20px', },
   historyList: { display: 'flex', flexDirection: 'column', overflowY: 'scroll', gap: '15px', padding: '20px' },
   neuCard: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', backgroundColor: '#1a1a1d', borderRadius: '20px', boxShadow: '8px 8px 16px #0d0d0f, -8px -8px 16px #27272b' },
   foodName: { fontSize: '16px', fontWeight: '600', display: 'block' },
   foodTime: { fontSize: '12px', color: '#666' },
-  foodCal: { color: '#00ff88', fontWeight: '700', fontSize: '18px' },
+  foodCal: { color: '#EFBF04', fontWeight: '700', fontSize: '18px' },
   navbar: { position: 'fixed', bottom: 0, left: 0, width: '100%', height: '70px', backgroundColor: '#1a1a1d', display: 'flex', borderTop: '1px solid #2a2a2e', zIndex: 1000 },
   navItem: { flex: 1, background: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '5px', fontSize: '12px', color: '#888', fontWeight: 'bold' },
   settingsPanel: { padding: '20px', borderRadius: '20px', backgroundColor: '#1a1a1d', boxShadow: '8px 8px 16px #0d0d0f' },
