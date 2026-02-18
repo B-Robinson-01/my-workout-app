@@ -16,11 +16,20 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Testing using localhost
 
 Simple testing on local device
-- npm run preview
-- npm run dev
+> npm run preview
+> npm run dev
 
 Host from device
-- npm run dev -- --host
+> npm run dev -- --host
+
+## Setup as a PWA
+Forces updates such that as a new update is pushed to github, our app will update
+specified fields
+
+To launch the app:
+> npm run build
+
+Then simply push the new dist folder to the repo
 
 Source: https://b-robinson-01.github.io/my-workout-app/
 
