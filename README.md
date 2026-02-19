@@ -5,10 +5,6 @@
 This app explores how to get React and Vite working with some PWA updating and
 Dexie.js data persistance. 
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
 ## Testing using localhost
 
 Simple testing on local device
