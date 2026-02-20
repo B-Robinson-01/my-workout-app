@@ -1,46 +1,235 @@
-html, body {
-  position: fixed;
+/* --- Global Reset & Body --- */
+.app-frame {
+  margin: 0;
+  padding: 0;
+  background-color: #121214;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Matches useEffect logic */
 }
 
-#root {
-  max-width: 1280px;
+/* --- Layout Containers --- */
+.app-container {
+  max-width: 500px;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px 100px 20px; /* Top padding clears the view, bottom clears navbar */
+  box-sizing: border-box;
+  overflow: hidden; 
   margin: 0 auto;
-  padding: 2rem;
+}
+
+/* --- Hero Section (Top Card) --- */
+.hero-card {
+  background: linear-gradient(145deg, #1e1e21, #161619);
+  border-radius: 30px;
+  padding: 40px 20px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Circular Progress */
+.progress-container {
+  position: relative;
+  display: inline-block;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.big-num {
+  font-size: 28px;
+  font-weight: 800;
+  display: block;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
+.small-label {
+  font-size: 12px;
   color: #888;
+}
+
+/* Linear Progress Bar */
+.protein-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+.linear-track {
+  width: 100%;
+  height: 12px;
+  background-color: #1a1a1d;
+  border-radius: 6px;
+  box-shadow: inset 2px 2px 5px #0d0d0f, inset -2px -2px 5px #27272b;
+  overflow: hidden;
+}
+
+.linear-bar {
+  height: 100%;
+  border-radius: 6px;
+  background-color: #e8c123;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Forms & Inputs --- */
+.glass-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.input-field {
+  display: flex;
+  background-color: #1a1a1d;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: inset 4px 4px 8px #0d0d0f, inset -4px -4px 8px #27272b;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.plus-btn {
+  background-color: #EFBF04;
+  color: #000;
+  border: none;
+  border-radius: 15px;
+  width: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* --- History List --- */
+.history-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 20px 20px 20px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.entry-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #1a1a1d;
+  border-radius: 20px;
+}
+
+.food-name {
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+
+.food-time {
+  font-size: 12px;
+  color: #666;
+}
+
+.food-cal {
+  color: #EFBF04;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* --- Settings --- */
+.settings-panel {
+  width: 100%; 
+  box-sizing: border-box; /* Ensures padding doesn't make it wider than 100% */
+  display: flex; /* Enables flexbox layout for children */
+  flex-direction: column; /* Stacks inputs vertically */
+  gap: 15px; /* Adds even space between every item automatically */
+  
+  /* Visuals matched to Hero Card */
+  padding: 30px 20px; 
+  border-radius: 30px;
+  background-color: #1a1a1d
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  color: #888;
+  margin-left: 5px;
+}
+
+.clear-btn {
+  margin-top: 20px;
+  background-color: #e73e3e;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 4px 4px 8px #0d0d0f;
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #1a1a1d;
+  display: flex;
+  border-top: 1px solid #2a2a2e;
+  z-index: 1000;
+}
+
+.nav-item {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #888; /* Default inactive color */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-item.active {
+  color: #EFBF04;
+}
+
+/* Special class for when a nav button is active */
+.nav-item.active {
+  color: #EFBF04;
 }
