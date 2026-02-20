@@ -97,6 +97,15 @@ const HomeView = ({ food, setFood, calories, setCalories, protein, setProtein, a
   </>
 );
 
+const PlannerView = ({ /** Parameters for PlannerView */}) => (
+  <div className="settings-panel"> {/* Re-using your existing card style */}
+    <h2 style={{ marginBottom: '20px' }}>Workout Planner</h2>
+    <h2 style={{ color: '#888', textAlign: 'center', padding: '40px 0' }}>
+      🚧 Work in Progress 🚧
+    </h2>
+  </div>
+)
+
 const SettingsView = ({ dailyGoal, setDailyGoal, proteinGoal, setProteinGoal, setEntries }) => (
   <div className="settings-panel">
     <h2 style={{ marginBottom: '20px' }}>User Settings</h2>
@@ -200,7 +209,7 @@ const App = () => {
     <div className="app-frame"> 
       <div className="app-container">
         <div style={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          {view === 'home' ? (
+          {view === 'home' && (
             <HomeView 
               food={food} setFood={setFood} 
               calories={calories} setCalories={setCalories} 
@@ -212,7 +221,13 @@ const App = () => {
               proteinProgress={proteinProgress}
               entries={entries} 
             />
-          ) : (
+          )}
+
+          {view === 'planner' && (
+            <PlannerView />
+          )}
+
+          {view === 'settings' && (
             <SettingsView 
               dailyGoal={dailyGoal} 
               setDailyGoal={updateGoal} 
@@ -227,7 +242,7 @@ const App = () => {
           <button className={`nav-item ${view === 'home' ? 'active' : ''}`} onClick={() => setView('home')}>
             🏠 <span>Dashboard</span>
           </button>
-          <button className={`nav-item ${view === 'workout' ? 'active' : ''}`} onClick={() => setView('settings')}>
+          <button className={`nav-item ${view === 'workout' ? 'active' : ''}`} onClick={() => setView('planner')}>
             💪 <span>Workout Planner</span>
           </button>
           <button className={`nav-item ${view === 'settings' ? 'active' : ''}`} onClick={() => setView('settings')}>
